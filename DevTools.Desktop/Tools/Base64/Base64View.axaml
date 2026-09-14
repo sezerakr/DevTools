@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevTools.Desktop.Tools.Base64"
+             x:Class="DevTools.Desktop.Tools.Base64.Base64View"
+             x:DataType="vm:Base64ViewModel">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,*" RowSpacing="8">
+        <TextBlock Grid.Row="0" Text="{Binding Info.Name}" FontSize="22" FontWeight="SemiBold" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12">
+            <ToggleSwitch IsChecked="{Binding IsDecodeMode}" OnContent="Decode" OffContent="Encode" />
+            <CheckBox IsChecked="{Binding UrlSafe}" Content="URL safe" />
+            <Button Content="Paste" Command="{Binding PasteCommand}" />
+            <Button Content="Swap" Command="{Binding SwapCommand}" />
+        </StackPanel>
+
+        <TextBox Grid.Row="2"
+                 Text="{Binding Input}"
+                 PlaceholderText="Input"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 FontFamily="{DynamicResource MonospaceFont}" />
+
+        <DockPanel Grid.Row="3">
+            <Button DockPanel.Dock="Right" Content="Copy" Command="{Binding CopyCommand}" />
+            <TextBlock Text="{Binding Error}" Foreground="IndianRed" VerticalAlignment="Center" />
+        </DockPanel>
+
+        <TextBox Grid.Row="4"
+                 Text="{Binding Output}"
+                 PlaceholderText="Output"
+                 IsReadOnly="True"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 FontFamily="{DynamicResource MonospaceFont}" />
+    </Grid>
+</UserControl>
