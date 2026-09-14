@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="using:DevTools.Desktop.Shell"
+        xmlns:infra="using:DevTools.Desktop.Infrastructure"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
+        x:Class="DevTools.Desktop.Shell.MainWindow"
+        x:DataType="shell:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Width="1100" Height="700"
+        MinWidth="720" MinHeight="480"
+        WindowStartupLocation="CenterScreen"
+        Title="DevTools">
+
+    <Grid ColumnDefinitions="260,*">
+        <Border Grid.Column="0"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+            <DockPanel Margin="8">
+                <TextBox DockPanel.Dock="Top"
+                         Margin="0,0,0,8"
+                         PlaceholderText="Search tools..."
+                         Text="{Binding SearchText}" />
+
+                <ListBox ItemsSource="{Binding Tools}"
+                         SelectedItem="{Binding SelectedTool}"
+                         Background="Transparent">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="infra:ToolViewModelBase">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{Binding Info.Name}" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding Info.Category}" Opacity="0.6" FontSize="12" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1"
+                        Margin="16"
+                        Content="{Binding SelectedTool}" />
+    </Grid>
+</Window>

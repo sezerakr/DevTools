@@ -55,3 +55,12 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Local additions
+publish/
+.idea/
+.vs/
+.vscode/
+*.user
+*.suo
+.DS_Store
